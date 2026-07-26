@@ -1,6 +1,98 @@
 # laravel_newtime
 Api rest per progetto test New Time
 
+## Configuring A Bash Alias
+
+The project has been created with Laravel Sail
+Sail commands are invoked using the **vendor/bin/sail** script that is included with all new Laravel applications:
+
+```bash
+./vendor/bin/sail up
+```
+
+However, instead of repeatedly typing **[vendor/bin/sail]** to execute Sail commands, you may wish to configure a Bash alias that allows you to execute Sail's commands more easily:
+
+```bash
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
+
+Once the Bash alias has been configured, you may execute Sail commands by simply typing sail. The remainder of this documentation's examples will assume that you have configured this alias:
+
+```bash
+sail up
+```
+
+Command List :
+
+```bash
+sail up -d        # start Sail "detached" mode
+sail stop         # stop containers
+sail down         # stop and remove containers 
+sail artisan migrate
+sail composer install
+sail npm run dev
+sail test
+sail tinker
+```
+
+
+## Setup Project
+
+### 1. Install the PHP dependencies (Composer) — but `vendor/`  doesn't exist yet, so you don't have Sail either! Use a temporary container:
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
+```
+### 2. Copy the configuration file
+```bash
+cp .env.example .env
+```
+Possible variables to add or modify
+
+```bash
+APP_PORT=8000
+SAIL_XDEBUG_MODE=debug #optional
+FORWARD_DB_PORT=3307
+
+DB_DATABASE=database
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
+
+### 3. Now that **vendor/bin/sail exists**, you can start the containers.
+```bash
+sail up -d
+```
+
+### 4. Install PHP dependencies
+```bash
+sail composer install 
+```
+
+### 5. Generate the app key (inside the container)
+```bash
+sail artisan key:generate
+```
+
+### 6. Run the migrations (and any seeders).
+```bash
+sail artisan migrate --seed
+```
+
+### 7. If the project has a frontend (Vite, Tailwind, etc.)
+*That is not the case here*
+```bash
+sail npm install
+sail npm run dev      # per sviluppo (watch mode)
+# oppure
+sail npm run build    # per produzione
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
