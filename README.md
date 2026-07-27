@@ -1,5 +1,10 @@
 # laravel_newtime
-Api rest per progetto test New Time
+Api rest for test project New Time
+
+## Clone the repository
+```bash
+git clone https://github.com/mravaglia/api_newtime.git
+```
 
 ## Configuring A Bash Alias
 
@@ -22,7 +27,7 @@ Once the Bash alias has been configured, you may execute Sail commands by simply
 sail up
 ```
 
-Command List :
+Utility Command List :
 
 ```bash
 sail up -d        # start Sail "detached" mode
@@ -83,14 +88,18 @@ sail artisan key:generate
 ```bash
 sail artisan migrate --seed
 ```
+or
+```bash
+artisan migrate:refresh --seed
+```
 
 ### 7. If the project has a frontend (Vite, Tailwind, etc.)
 *That is not the case here*
 ```bash
 sail npm install
-sail npm run dev      # per sviluppo (watch mode)
+sail npm run dev      # for development (watch mode)
 # oppure
-sail npm run build    # per produzione
+sail npm run build    # for production
 ```
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
