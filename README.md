@@ -6,7 +6,7 @@ Api rest for test project New Time
 git clone https://github.com/mravaglia/api_newtime.git
 ```
 
-## Configuring A Bash Alias
+## Configuring A Bash Alias (not mandatory)
 
 The project has been created with Laravel Sail
 Sail commands are invoked using the **vendor/bin/sail** script that is included with all new Laravel applications:
@@ -64,6 +64,8 @@ APP_PORT=8000
 SAIL_XDEBUG_MODE=debug #optional
 FORWARD_DB_PORT=3307
 
+FRONTEND_URL=http://localhost:5174 #important (base url app client Vue ) Resolve CORS problem
+
 DB_DATABASE=database
 DB_USERNAME=sail
 DB_PASSWORD=password
@@ -94,7 +96,7 @@ artisan migrate:refresh --seed
 ```
 
 ### 7. If the project has a frontend (Vite, Tailwind, etc.)
-*That is not the case here*
+***That is not the case here. This project does not have a frontend.*** 
 ```bash
 sail npm install
 sail npm run dev      # for development (watch mode)
