@@ -95,14 +95,6 @@ or
 artisan migrate:refresh --seed
 ```
 
-### 7. If the project has a frontend (Vite, Tailwind, etc.)
-***That is not the case here. This project does not have a frontend.*** 
-```bash
-sail npm install
-sail npm run dev      # for development (watch mode)
-# oppure
-sail npm run build    # for production
-```
 
 ## TEST API REST - POSTMAN
 
